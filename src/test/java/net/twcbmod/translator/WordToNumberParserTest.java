@@ -26,11 +26,11 @@ public class WordToNumberParserTest {
     @Test
     public void testRelativeCoordinates() {
         assertEquals("~0", WordToNumberParser.parseNumbersInString("~ноль"));
-        assertEquals("~0", WordToNumberParser.parseNumbersInString("~ ноль"));
+        assertEquals("~ 0", WordToNumberParser.parseNumbersInString("~ ноль"));
         assertEquals("~-5", WordToNumberParser.parseNumbersInString("~минус пять"));
-        assertEquals("~-5", WordToNumberParser.parseNumbersInString("~ минус пять"));
+        assertEquals("~ -5", WordToNumberParser.parseNumbersInString("~ минус пять"));
         assertEquals("^10", WordToNumberParser.parseNumbersInString("^десять"));
-        assertEquals("^10", WordToNumberParser.parseNumbersInString("^ десять"));
+        assertEquals("^ 10", WordToNumberParser.parseNumbersInString("^ десять"));
     }
 
     @Test

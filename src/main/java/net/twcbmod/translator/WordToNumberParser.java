@@ -135,26 +135,12 @@ public class WordToNumberParser {
                 curToken = curToken.substring(1);
             }
 
-            // If curToken is empty after removing prefix, check if next token is a minus or number word
+            // Standalone ~ or ^ without attached word
             int advance = 0;
             if (curToken.isEmpty() && !prefix.isEmpty()) {
-                // Peek ahead across whitespace to see if next token is number word or minus
-                int lookAhead = i + 1;
-                StringBuilder pendingWs = new StringBuilder();
-                while (lookAhead < tokens.length && tokens[lookAhead].trim().isEmpty()) {
-                    pendingWs.append(tokens[lookAhead]);
-                    lookAhead++;
-                }
-                if (lookAhead < tokens.length && isStartOfNumberWord(tokens[lookAhead])) {
-                    // Combine prefix with the number words starting at lookAhead
-                    curToken = tokens[lookAhead];
-                    advance = lookAhead - i;
-                } else {
-                    // Just a standalone ~ or ^
-                    resultTokens.add(token);
-                    i++;
-                    continue;
-                }
+                resultTokens.add(token);
+                i++;
+                continue;
             }
 
             if (isStartOfNumberWord(curToken)) {
@@ -221,7 +207,8 @@ public class WordToNumberParser {
         }
 
         while (i < tokens.length) {
-            if (tokens[i].trim().isEmpty()) {
+            String rawWord = (i == startIndex + tokenOffset) ? firstWord : tokens[i];
+            if (rawWord.trim().isEmpty()) {
                 // Lookahead over whitespace
                 int wsCheck = i + 1;
                 while (wsCheck < tokens.length && tokens[wsCheck].trim().isEmpty()) {
@@ -240,9 +227,10 @@ public class WordToNumberParser {
                     break;
                 }
                 i = wsCheck; // Advance i to wsCheck
+                rawWord = tokens[i];
             }
 
-            String word = tokens[i].toLowerCase(Locale.ROOT);
+            String word = rawWord.toLowerCase(Locale.ROOT);
             NumWord nw = WORD_MAP.get(word);
             if (nw == null || "минус".equals(word)) {
                 break;

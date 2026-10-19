@@ -31,14 +31,10 @@ public class CommandPreprocessor {
             return command;
         }
 
-        boolean hasSlash = command.startsWith("/");
-        String raw = hasSlash ? command.substring(1) : command;
+        String raw = command.startsWith("/") ? command.substring(1) : command;
 
         List<Token> tokens = tokenize(raw);
         StringBuilder result = new StringBuilder();
-        if (hasSlash) {
-            result.append("/");
-        }
 
         // Track context across text tokens (e.g. whether we are expecting a root command or after 'run')
         boolean isFirstWordInCommand = true;

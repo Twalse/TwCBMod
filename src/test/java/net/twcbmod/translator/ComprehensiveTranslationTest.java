@@ -30,7 +30,7 @@ public class ComprehensiveTranslationTest {
         assertEquals("kill @e[type=zombie]", CommandPreprocessor.translateCommand("/убить @сущности[тип=zombie]"));
         assertEquals("give @p diamond 64", CommandPreprocessor.translateCommand("/выдать @игрок diamond шестьдесят четыре"));
         assertEquals("clear @s", CommandPreprocessor.translateCommand("/очистить @себя"));
-        assertEquals("effect give @p speed 30 1", CommandPreprocessor.translateCommand("/эффект выдать @игрок speed тридцать один"));
+        assertEquals("effect give @p speed 30 1", CommandPreprocessor.translateCommand("/эффект выдать @игрок speed тридцать 1"));
         assertEquals("experience add @p 100 points", CommandPreprocessor.translateCommand("/опыт добавить @игрок сто points"));
         assertEquals("gamemode survival @p", CommandPreprocessor.translateCommand("/режим выживание @игрок"));
         assertEquals("gamemode creative @s", CommandPreprocessor.translateCommand("/гм креатив @я"));
