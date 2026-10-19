@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "twcbmod",
+  "version": "${version}",
+  "name": "TwCBMod",
+  "description": "Full Russian command translator for Minecraft command blocks and server commands.",
+  "authors": [
+    "TwCBMod Team"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/twcbmod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.twcbmod.TwCBMod"
+    ]
+  },
+  "mixins": [
+    "twcbmod.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21"
+  }
+}
